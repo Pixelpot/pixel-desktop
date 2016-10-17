@@ -1,10 +1,10 @@
 {
-    "name": "Popcorn-Time",
-    "companyName": "Popcorn Time",
+    "name": "Pixelpot",
+    "companyName": "Pixelpot",
     "installIcon": "./src/app/images/popcorntime.ico",
     "unInstallIcon": "./src/app/images/butter_uninstall.ico",
-    "homepage": "http://popcorntime.sh/",
-    "bugs": "https://github.com/popcorn-official/popcorn-desktop/issues",
+    "homepage": "http://pixelpot.github.io",
+    "bugs": "https://github.com/Pixelpot/pixelpot-desktop/issues",
     "repository": {
         "type": "git",
         "url": "https://github.com/popcorn-official/popcorn-desktop.git"
@@ -12,7 +12,7 @@
     "license": "GPL-3.0",
     "main": "app://host/src/app/index.html",
     "version": "0.3.9",
-    "releaseName": "There's nothing on TV",
+    "releaseName": "Look! Pirates!",
     "scripts": {
         "postinstall": "node_modules/.bin/bower install --config.interactive=false && grunt setup",
         "postupdate": "node_modules/.bin/bower update --config.interactive=false && grunt setup",
@@ -20,7 +20,7 @@
         "start": "gulp start"
     },
     "window": {
-        "title": "Popcorn Time",
+        "title": "Pixelpot",
         "icon": "./src/app/images/icon.png",
         "toolbar": false,
         "frame": false,
@@ -32,7 +32,7 @@
     },
     "dependencies": {
         "butter-provider": "git+https://github.com/butterproviders/butter-provider",
-        "butter-settings-popcorntime.io": "git+https://github.com/popcorn-official/butter-settings-popcorn#6b8075e0065efbe7276e4a469ca00dbc43c2aaa9",
+        "butter-settings-popcorntime.io": "git+https://github.com/JarLabs/butter-settings-popcorn#6b8075e0065efbe7276e4a469ca00dbc43c2aaa9",
         "butter-provider-yts": "git+https://github.com/team-pct/butter-provider-yts",
         "butter-provider-tvapi": "git+https://github.com/team-pct/butter-provider-tvapi",
         "butter-provider-haruhichan": "git+https://github.com/hackhackhack/butter-provider-haruhichan",
@@ -105,3 +105,4 @@
         "yargs": "^3.31.0"
     }
 }
+
