@@ -3,22 +3,22 @@
 ## Version 0.1.1
 ##
 ## Usage
-## ./make_popcorn.sh [url]
+## ./pixelpot_it.sh [url]
 ##
-## The script make_popcorn.sh allows you to clone, setup, and build a version of Popcorn Time
+## The script pixelpot_it.sh allows you to clone, setup, and build a version of Popcorn Time
 ## The [url] handle is optional and allows you to pick what repository you wish to clone
 ## If you use 'ssh' in the place of the optional [url] parameter, it will clone via ssh instead of http
 ##
 ## Optionally, you can also pass in a specific branch to build or clone, by making url contain a branch specifier
-## ./make_popcorn.sh '-b release/0.3.4 https://github.com/popcorn-official/popcorn-desktop'
+## ./pixelpot_it.sh '-b release/0.3.4 https://github.com/Pixelpot/pixelpot-desktop'
 ##
 
 
 clone_repo="True"
 if [ -z "$1" ]; then
-    clone_url="https://github.com/popcorn-official/popcorn-desktop.git"
+    clone_url="https://github.com/Pixelpot/pixelpot-desktop.git"
 elif [ "$1" = "ssh" ]; then
-    clone_url="ssh://git@github.com:popcorn-official/popcorn-desktop.git"
+    clone_url="ssh://git@github.com:Pixelpot/pixelpot-desktop.git"
 else
     clone_url="$1"
 fi
@@ -36,9 +36,9 @@ execsudo() {
 
 clone_command() {
     if git clone $clone_url $dir; then
-        echo "Cloned Popcorn Time successfully"
+        echo "Cloned Pixelpot successfully"
     else
-        echo "Popcorn Time encountered an error and could not be cloned"
+        echo "Pixelpot encountered an error and could not be cloned"
         exit 2
     fi
 }
@@ -46,7 +46,7 @@ clone_command() {
 if [ -e ".git/config" ]; then
     dat=$(grep url .git/config)
     case $dat in *popcorn*)
-        echo "You appear to be inside of a Popcorn Time repository already, not cloning"
+        echo "You appear to be inside of a Pixelpot repository already, not cloning"
         clone_repo="False"
         ;;
     *)
@@ -68,7 +68,7 @@ if [ -e ".git/config" ]; then
             fi
         done
         if [ "$rd_cln" = "no" ]; then
-            echo "You appear to be inside of a Popcorn Time repository already, not cloning"
+            echo "You appear to be inside of a Pixelpot repository already, not cloning"
             clone_repo="False"
         else
             echo "You've chosen to clone inside the current directory"
@@ -77,8 +77,8 @@ if [ -e ".git/config" ]; then
     esac
 fi
 if [ "$clone_repo" = "True" ]; then
-    echo "Cloning Popcorn Time"
-    read -p "Where do you wish to clone Popcorn Time to? [popcorn] " dir
+    echo "Cloning Pixelpot"
+    read -p "Where do you wish to clone Pixelpot to? [popcorn] " dir
     if [ -z "$dir" ]; then
         dir='popcorn'
     elif [ "$dir" = "/" ]; then
@@ -123,7 +123,7 @@ fi
 try="True"
 tries=0
 while [ "$try" = "True" ]; do
-    read -p "Do you wish to install the required dependencies for Popcorn Time and setup for building? (yes/no) [yes] " rd_dep
+    read -p "Do you wish to install the required dependencies for Pixelpot and setup for building? (yes/no) [yes] " rd_dep
     if [ -z "$rd_dep" ]; then
         rd_dep="yes"
     fi
@@ -154,14 +154,14 @@ if [ "$rd_dep" = "yes" ]; then
         exit 4
     fi
 
-    echo "Downloading Popcorn dependencies files"
+    echo "Downloading Pixelpot dependencies files"
     if execsudo "wget -i popcorn_dependencies_files.txt"; then
         echo "Local Popcorn files downloaded successfully!"
         echo "Moving Popcorn local files"
         mv torrent_collection.js src/app/lib/views/torrent_collection.js
         mv ysubs.js src/app/lib/providers/ysubs.js
     else
-        echo "Local Popcorn files encountered an error while downloading"
+        echo "Local Pixelpot files encountered an error while downloading"
         exit 4
     fi
 
@@ -194,15 +194,15 @@ if [ "$rd_dep" = "yes" ]; then
         exit 4
     fi
 
-    echo "Successfully setup for Popcorn Time"
+    echo "Successfully setup for Pixelpot"
 fi
 
 if grunt build; then
-    echo "Popcorn Time built successfully!"
+    echo "Pixelpot built successfully!"
     ./Create-Desktop-Entry
     echo "Run 'grunt start' from inside the repository to launch the app"
     echo "Enjoy!"
 else
-    echo "Popcorn Time encountered an error and couldn't be built"
+    echo "Pixelpot encountered an error and couldn't be built"
     exit 5
 fi
